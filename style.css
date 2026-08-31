@@ -1,0 +1,371 @@
+/* ==========================================================================
+   VARIÁVEIS E CONFIGURAÇÕES GERAIS
+   Cores predominantes: Azul Escuro (#050b14, #0a192f) e Prata (#c0c9d6, #e6edf5)
+   ========================================================================== */
+:root {
+  --bg-deep-space: #030712;
+  --bg-navy-dark: #0a1128;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  
+  --silver-bright: #f1f5f9;
+  --silver-main: #cbd5e1;
+  --silver-muted: #94a3b8;
+  --silver-accent: #e2e8f0;
+  
+  --blue-accent: #1e3a8a;
+  --glow-color: rgba(192, 201, 214, 0.25);
+  
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-deep-space);
+  color: var(--silver-main);
+  font-family: var(--font-body);
+  line-height: 1.8;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Fundo estelar dinâmico */
+#stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 50%;
+  animation: twinkle var(--duration) infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ==========================================================================
+   NAVEGAÇÃO
+   ========================================================================== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(3, 7, 18, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(203, 213, 225, 0.1);
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--silver-bright);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--silver-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.nav-links a:hover {
+  color: var(--silver-bright);
+  text-shadow: 0 0 8px rgba(241, 245, 249, 0.6);
+}
+
+/* ==========================================================================
+   HERO / ENTRADA
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 0 1rem;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(10, 17, 40, 0.4) 0%, rgba(3, 7, 18, 0.95) 90%);
+  z-index: 1;
+}
+
+.hero-image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+  filter: brightness(0.8) contrast(1.1);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+h1.fade-in-title {
+  font-family: var(--font-heading);
+  font-size: 3.2rem;
+  color: var(--silver-bright);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 0 0 20px rgba(192, 201, 214, 0.4);
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  color: var(--silver-main);
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  letter-spacing: 1px;
+}
+
+.btn-scroll {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border: 1px solid var(--silver-main);
+  color: var(--silver-bright);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  transition: all 0.4s ease;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.btn-scroll:hover {
+  background: var(--silver-bright);
+  color: var(--bg-deep-space);
+  box-shadow: 0 0 15px rgba(241, 245, 249, 0.5);
+}
+
+/* Animações Leves do Hero */
+.animate-pulse {
+  animation: pulseZoom 12s infinite alternate ease-in-out;
+}
+
+@keyframes pulseZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+/* ==========================================================================
+   ESTRUTURA DE SEÇÕES E CARDS (GLASSMORPHISM)
+   ========================================================================== */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  color: var(--silver-bright);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  letter-spacing: 3px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--silver-bright), transparent);
+  margin: 0.8rem auto 0;
+}
+
+.section-description {
+  text-align: center;
+  max-width: 700px;
+  margin: -1.5rem auto 2.5rem;
+  color: var(--silver-muted);
+}
+
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(203, 213, 225, 0.12);
+  border-radius: 8px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(203, 213, 225, 0.3);
+}
+
+.glass-card p {
+  margin-bottom: 1.2rem;
+  text-align: justify;
+}
+
+.glass-card p:last-child {
+  margin-bottom: 0;
+}
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.margin-top-large {
+  margin-top: 3.5rem;
+}
+
+.subsection-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--silver-bright);
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+/* Imagens das Seções */
+.image-box {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(203, 213, 225, 0.2);
+}
+
+.content-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.image-box:hover .content-img {
+  transform: scale(1.03);
+}
+
+/* ==========================================================================
+   CONSTELAÇÕES E ANIMAÇÕES ESPECÍFICAS
+   ========================================================================== */
+.constelacoes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.constelacao-card {
+  padding: 0;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.constelacao-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(192, 201, 214, 0.15);
+}
+
+.constelacao-img-wrapper {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.constelacao-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.constelacao-card:hover .constelacao-img {
+  transform: scale(1.1);
+}
+
+.constelacao-info {
+  padding: 1.5rem;
+}
+
+.constelacao-info h3 {
+  font-family: var(--font-heading);
+  color: var(--silver-bright);
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Animações Flutuantes e Efeitos */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-glow {
+  box-shadow: 0 0 20px var(--glow-color);
+}
+
+/* ==========================================================================
+   RODAPÉ / CRÉDITOS
+   ========================================================================== */
+.footer-section {
+  background: var(--bg-navy-dark);
+  border-top: 1px solid rgba(203, 213, 225, 0.1);
+  padding-top
